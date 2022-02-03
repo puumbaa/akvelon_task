@@ -2,7 +2,7 @@
 
 
 This application is Web API for project and task management using Spring boot. 
-The project is deployed on heroku. You can find it in the [https://akvelon-task-tracker.herokuapp.com/](link)
+The project is deployed on heroku. You can find it in the [link](https://akvelon-task-tracker.herokuapp.com/)
 
 
 ## Technology stack:
