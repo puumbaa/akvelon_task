@@ -26,7 +26,7 @@ It produces the `task-0.1.jar` file in the `target/ ` directory.
 The application is now runnable using
 
 ```shell script
-java -jar target/quarkus-run.jar
+java -jar target/task-0.1.jar
 ```
 
 ## API
