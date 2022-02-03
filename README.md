@@ -1,7 +1,9 @@
 # Task tracker
 
 
-This application is Web API for project and task management using Spring boot.
+This application is Web API for project and task management using Spring boot. 
+The project is deployed on heroku. You can find it in the (https://akvelon-task-tracker.herokuapp.com/)[link]
+
 
 ## Technology stack:
 * Spring boot
@@ -27,3 +29,5 @@ The application is now runnable using
 java -jar target/quarkus-run.jar
 ```
 
+## API
+To get acquainted with api, just follow the path /swagger-ui.html
