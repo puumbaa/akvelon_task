@@ -11,7 +11,7 @@
     <groupId>ru.akvelon.trainee</groupId>
     <artifactId>task</artifactId>
     <version>0.1</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>akvelon</name>
     <description>Test task on Java intern position</description>
     <properties>

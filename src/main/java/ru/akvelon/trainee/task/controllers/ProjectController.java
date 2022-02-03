@@ -62,7 +62,6 @@ public class ProjectController {
     }
 
 
-
     @Operation(summary = "Search for a project by name")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
@@ -88,6 +87,7 @@ public class ProjectController {
         return projectService.findTasksById(id);
     }
 
+
     @Operation(summary = "Add project")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Project successfully added",
@@ -100,7 +100,7 @@ public class ProjectController {
         return projectService.save(project);
     }
 
-    @DeleteMapping("/{id}")
+
     @Operation(summary = "Remove project")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Project successfully removed",
@@ -108,12 +108,14 @@ public class ProjectController {
                             mediaType = "application/json"
                     )),
             @ApiResponse(responseCode = "400", description = "Incorrect project id")})
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> removeProject(@PathVariable("id") Long id) {
         if (projectService.remove(id)) {
             return new ResponseEntity<>("Project with id: " + id + " successfully deleted", HttpStatus.OK);
         }
         return new ResponseEntity<>("Something went wrong...", HttpStatus.BAD_REQUEST);
     }
+
 
     @Operation(summary = "Update project")
     @ApiResponses(value = {
