@@ -15,7 +15,7 @@
     <name>akvelon</name>
     <description>Test task on Java intern position</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>17.0.2</java.version>
     </properties>
     <dependencies>
         <dependency>
