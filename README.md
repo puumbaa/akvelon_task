@@ -3,7 +3,7 @@
 
 This application is Web API for project and task management using Spring boot.
 
-##Technology stack:
+## Technology stack:
 * Spring boot
 * Spring data jpa
 * PostgreSQl  
