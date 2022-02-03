@@ -1,0 +1,43 @@
+###
+PUT http://localhost:80/projects/2
+Content-Type: application/json
+
+{
+  "name": "XXL",
+  "startDate": "2022-02-05",
+  "priority": "10",
+  "status": "NOT_STARTED",
+  "tasks": [
+    {
+      "name": "asdasdasdasd",
+      "priority": "4"
+    }
+  ]
+}
+
+<> 2022-02-03T014902.200.json
+
+###
+GET http://localhost/projects
+
+
+###
+DELETE http://localhost/projects/1
+
+<> 2022-02-03T022616.500.json
+<> 2022-02-03T022357.500.json
+
+###
+POST http://localhost:80/tasks
+Content-Type: application/json
+
+{
+  "name": "blabla",
+  "description": "qweqwe",
+  "status": "IN_PROGRESS",
+  "priority": "5",
+  "project": {
+    "id": "3",
+    "name": "asd"
+  }
+}

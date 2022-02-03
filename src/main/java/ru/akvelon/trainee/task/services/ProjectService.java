@@ -1,21 +1,27 @@
 package ru.akvelon.trainee.task.services;
 
+import ru.akvelon.trainee.task.dto.ProjectDto;
+import ru.akvelon.trainee.task.dto.TaskDto;
 import ru.akvelon.trainee.task.models.Project;
-import ru.akvelon.trainee.task.models.Task;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ProjectService {
 
-    List<Project> findAll();
+    List<ProjectDto> findAll();
 
-    Project findById(Long id);
+    ProjectDto findById(Long id);
 
-    List<Task> findTasksById(Long id);
+    List<TaskDto> findTasksById(Long id);
 
-    Project save(Project project);
+    ProjectDto save(ProjectDto project);
 
     boolean remove(Long id);
 
-    Project update(Project newProject, Long id);
+    ProjectDto update(ProjectDto newProject, Long id);
+
+    List<ProjectDto> findAllByStartDateBetween(LocalDate start, LocalDate end, String sort);
+
+    List<ProjectDto> findAllByNameLike(String name, String sort);
 }
