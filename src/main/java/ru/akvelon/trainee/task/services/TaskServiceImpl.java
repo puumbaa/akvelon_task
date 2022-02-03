@@ -54,11 +54,15 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean remove(Long id) {
-        return taskRepository.removeById(id) != null;
+        return taskRepository.removeById(id) == 1;
     }
 
     @Override
     public TaskDto update(TaskDto newTask, Long id) {
+        if (!isEnumConstant(TaskStatus.class, newTask.getStatus())){
+            throw new InvalidDataException("No enum constant!");
+        }
+
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
 

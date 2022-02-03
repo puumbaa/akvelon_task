@@ -11,5 +11,5 @@ import java.util.List;
 public interface TaskRepositoryJpaImpl extends JpaRepository<Task,Long> {
     List<Task> findAllByProjectId(Long id);
     @Transactional
-    Task removeById(Long id);
+    Long removeById(Long id);
 }

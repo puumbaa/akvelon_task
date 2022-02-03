@@ -31,7 +31,7 @@ public class Project {
     @Column(nullable = false)
     private ProjectStatus status;
     private int priority;
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Task> tasks;
 
