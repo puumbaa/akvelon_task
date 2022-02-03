@@ -30,4 +30,4 @@ java -jar target/quarkus-run.jar
 ```
 
 ## API
-To get acquainted with api, just follow the path /swagger-ui.html
+To get acquainted with api, just follow the [path](https://akvelon-task-tracker.herokuapp.com/swagger-ui.html)
