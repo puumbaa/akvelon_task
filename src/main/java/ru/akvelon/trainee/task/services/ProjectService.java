@@ -24,4 +24,8 @@ public interface ProjectService {
     List<ProjectDto> findAllByStartDateBetween(LocalDate start, LocalDate end, String sort);
 
     List<ProjectDto> findAllByNameLike(String name, String sort);
+
+    TaskDto addTask(Long id, TaskDto task);
+
+    boolean removeTask(Long projectId, Long taskId);
 }

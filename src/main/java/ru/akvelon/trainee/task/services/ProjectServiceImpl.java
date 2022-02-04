@@ -5,15 +5,18 @@ import org.springframework.stereotype.Service;
 import ru.akvelon.trainee.task.dto.ProjectDto;
 import ru.akvelon.trainee.task.dto.TaskDto;
 import ru.akvelon.trainee.task.enums.ProjectStatus;
+import ru.akvelon.trainee.task.enums.TaskStatus;
 import ru.akvelon.trainee.task.exceptions.InvalidDataException;
 import ru.akvelon.trainee.task.exceptions.ProjectNotFoundException;
 import ru.akvelon.trainee.task.models.Project;
+import ru.akvelon.trainee.task.models.Task;
 import ru.akvelon.trainee.task.repositories.ProjectRepositoryJpaImpl;
 import ru.akvelon.trainee.task.repositories.TaskRepositoryJpaImpl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import static ru.akvelon.trainee.task.dto.ProjectDto.from;
 import static ru.akvelon.trainee.task.utils.MyUtils.*;
@@ -119,8 +122,41 @@ public class ProjectServiceImpl implements ProjectService {
         return from(projectRepository.findAllByNameLike("%" + name + "%", sort));
     }
 
+    @Override
+    public TaskDto addTask(Long id, TaskDto newTask) {
+        Optional<Task> taskCandidate = taskRepository.findById(newTask.getId());
 
+        if (taskCandidate.isPresent()) {
+            Task task = taskCandidate.get();
+            task.setProject(projectRepository.getById(id));
+            return TaskDto.from(taskRepository.save(task));
+        }
 
+        Task task = taskCandidate.orElseGet(() -> {
+            if (!isEnumConstant(TaskStatus.class, newTask.getStatus())) {
+                throw new InvalidDataException("Not enum constant!");
+            }
+            return Task.builder()
+                    .name(newTask.getName())
+                    .description(newTask.getDescription())
+                    .project(projectRepository.getById(id))
+                    .priority(newTask.getPriority())
+                    .status(TaskStatus.valueOf(newTask.getStatus()))
+                    .build();
+        });
+        return TaskDto.from(taskRepository.save(task));
+    }
+
+    @Override
+    public boolean removeTask(Long projectId, Long taskId) {
+        Task task = taskRepository.getById(taskId);
+        if (task.getProject().getId().equals(projectId)){
+            task.setProject(null);
+            taskRepository.save(task);
+            return true;
+        }
+        return false;
+    }
 
 
 }

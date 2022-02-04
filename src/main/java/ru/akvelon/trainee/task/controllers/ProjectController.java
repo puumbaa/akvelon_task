@@ -129,4 +129,37 @@ public class ProjectController {
     public ProjectDto updateProject(@RequestBody ProjectDto newProject, @PathVariable("id") Long id) {
         return projectService.update(newProject, id);
     }
+
+
+    @Operation(summary = "Add a task to a project")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Task successfully added",
+                    content = @Content(schema = @Schema(implementation = TaskDto.class),
+                            mediaType = "application/json"
+                    )),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "Entity not found")})
+    @PostMapping("/{id}/tasks")
+    public TaskDto addTaskToProject(@PathVariable("id") Long id, @RequestBody TaskDto task) {
+        return projectService.addTask(id, task);
+    }
+
+
+
+    @Operation(summary = "Remove a task from a project")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Task successfully removed",
+                    content = @Content(schema = @Schema(implementation = ResponseEntity.class),
+                            mediaType = "application/json"
+                    )),
+            @ApiResponse(responseCode = "400", description = "Task removing failed"),
+            @ApiResponse(responseCode = "404", description = "Entity not found")})
+    @DeleteMapping("/{id}/tasks/{taskId}")
+    public ResponseEntity<?> removeTaskFromProject(@PathVariable("id") Long projectId,
+                                                   @PathVariable("taskId") Long taskId) {
+        if (projectService.removeTask(projectId, taskId)) {
+            return new ResponseEntity<>("Task with id: " + taskId + " successfully deleted from project", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Something went wrong...", HttpStatus.BAD_REQUEST);
+    }
 }
