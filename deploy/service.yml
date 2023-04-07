@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: akvelon-task-svc
+  labels:
+    env  : prod
+spec:
+  selector:
+    project: akvelon    # Selecting PODS with those Labels
+  ports:
+    - name      : http
+      port      : 80
+      targetPort: http  # Port on POD

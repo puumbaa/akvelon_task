@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akvelon-task-deployment
+  labels:
+    app: akvelon-task
+spec:
+  selector:
+    matchLabels:
+      project: akvelon
+  template:
+    metadata:
+      labels:
+        project: akvelon
+    spec:
+      containers:
+        - name: akvelon-task
+          image: puumbaa/akvelon_task:latest
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
